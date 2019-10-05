@@ -1,0 +1,62 @@
+
+<div class="animated fadeIn">
+    <div class="row">
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <div class="card">
+        <div class="card-header">
+            <img [src]="imageurl" alt="Profile" class="avatar">
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Username</span>
+                      </div>
+                      <input 
+                      type="text" 
+                      id="username" 
+                      formControlName="username" 
+                      class="form-control">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Email</span>
+                </div>
+                <input type="email" 
+                id="email" 
+                formControlName="email" class="form-control" autocomplete="email" readonly>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Age</span>
+                </div>
+                <input type="age" 
+                id="age" 
+                formControlName="age" class="form-control" autocomplete="age">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-actions">
+              <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            </div>
+            <div class="form-group form-actions">
+                    <button type="submit" class="btn btn-sm btn-primary">Cancel</button>
+                  </div>
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+

@@ -1,0 +1,94 @@
+<div class="row">
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header">
+      <strong>Upload files</strong>
+    </div>
+    <div class="card-body">
+      <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01" (change)= "fileName($event.target.files)" multiple>
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+        <div *ngFor = "let name of fileNames;index as i">
+            <strong>{{i+1}}.{{name}}</strong>
+        </div> 
+      </form>
+      <div class="animated fadeIn" [hidden]="!progress">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                  <progressbar class="progress progress-success" [value]="uploadProgress" [max]="100" type="success"><b>Uploaded {{uploadProgress}}%</b></progressbar>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-sm btn-primary" (click)="uploadFile()"><i class="fa fa-dot-circle-o" ></i> Submit</button>
+      <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+  </div> 
+</div>
+</div>
+
+<div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-align-justify"></i> Recently uploaded files
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Uploaded By</th>
+                  <th>Uploaded Time</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor = "let file of fileDetails">
+                  <td>{{file.name}}</td>
+                  <td>{{file.uploadedBy}}</td>
+                  <td>{{file.createdAt}}</td>
+                  <td>
+                      <!-- <button type="button" class="btn btn-primary px-4" (click)="download(file.name)">Download</button> -->
+                      <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                          <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)">Download</button>
+                          <button type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)">Delete</button>
+                          <button class="btn btn-primary" type="button" disabled>
+                              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                              Loading...
+                          </button>
+                      </div>
+                  </td>
+                </tr>            
+              </tbody>
+            </table>
+            <nav>
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
