@@ -16,4 +16,7 @@ export class UserService {
      console.log("userDetail",userDetail);
     return this.http.post(`${this.baseUrl}/users`, userDetail);
   }
+  public verifyEmail(email){
+    return this.http.post(`${this.baseUrl}/user/verify-email`, email);
+  }
 }
