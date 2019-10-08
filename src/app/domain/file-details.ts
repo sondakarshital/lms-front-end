@@ -4,5 +4,6 @@ export class FileDetails {
     public createdAt :string;
     public updatedAt: number;
     public uploadedBy: string;
+    public fileUrl : string;
     constructor() { }
 }

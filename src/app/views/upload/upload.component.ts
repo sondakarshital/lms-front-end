@@ -30,7 +30,7 @@ export class UploadComponent implements OnInit {
     this.progress = true;
     const formData = new FormData();
     this.files.forEach(file => {
-      formData.append('fileupload', file);
+      formData.append('upload', file);
     });
     this.uploadService.uploadFile(formData).subscribe((data) => {
       this.uploadProgress = data.message;

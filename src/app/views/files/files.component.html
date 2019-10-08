@@ -3,7 +3,7 @@
         <div class="col-sm-6 col-md-6" *ngFor="let item of playlist; let $index = index" [class.selected]="item === currentItem">
             <div class="card">
                 <div class="card-header">
-                    {{item.title}}
+                    {{item.name}}
                 </div>
                 <div class="card-body">
                         <vg-player>
@@ -33,8 +33,8 @@
                                     <vg-fullscreen></vg-fullscreen>
                                 </vg-controls>
 
-                                <video [vgMedia]="media" #media id="singleVideo" crossorigin>
-                                    <source [src]="item.src" [type]="item.type">
+                                <video [vgMedia]="media" #media id="singleVideo" x>
+                                    <source [src]="item.fileUrl" [type]="item.type">
                                 </video>
                             </vg-player>
                 </div>
