@@ -36,10 +36,10 @@ import {FileDetails} from '../../domain/file-details'
       }
       downloadFile(filename):Observable<any>{
         let options = new RequestOptions({responseType: ResponseContentType.Blob });
-        return this.http.get(`${this.baseUrl}/file?filename=`+filename,{ responseType: 'blob' as 'json' });
+        return this.http.get(`${this.baseUrl}/cloud/file?filename=`+filename,{ responseType: 'blob' as 'json' },);
       }
       deleteFile(filename){
-        return this.http.delete(`${this.baseUrl}/file?filename=`+filename);
+        return this.http.delete(`${this.baseUrl}/cloud/file?filename=`+filename,);
       }
 
 }
