@@ -4,9 +4,14 @@
     <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
       <div class="card">
         <div class="card-header">
-            <img [src]="imageurl" alt="Profile" class="avatar">
+            <div class="image-container">
+                <img [src]="imageurl" class=""> <br/>
+                <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">
+                <span class="message">Tap here to select your picture</span>
+            </div>
         </div>
         <div class="card-body">
+          
             <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -43,6 +48,58 @@
                 <input type="age" 
                 id="age" 
                 formControlName="age" class="form-control" autocomplete="age">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">DOB</span>
+                </div>
+                <input type="text" 
+                id="dob" 
+                formControlName="dob" class="form-control" autocomplete="dob">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Mobile No</span>
+                </div>
+                <input type="text" 
+                id="mob" 
+                formControlName="mob" class="form-control" autocomplete="mob">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Department</span>
+                </div>
+                <input type="text" 
+                id="dept" 
+                formControlName="dept" class="form-control" autocomplete="dept">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Address</span>
+                </div>
+                <input type="text" 
+                id="address" 
+                formControlName="address" class="form-control" autocomplete="address">
                 <div class="input-group-append">
                   <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                 </div>

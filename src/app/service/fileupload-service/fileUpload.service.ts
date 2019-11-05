@@ -34,6 +34,14 @@ import {FileDetails} from '../../domain/file-details'
       getUploadedFiles():Observable<FileDetails>{
         return this.http.get<FileDetails>(`${this.baseUrl}/files`);
       }
+      //with pagination
+      getFiles(limit,pageNo):Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files?limit=${limit}&pageNo=${pageNo}`);
+      }
+      //getting video audio files
+      getVideoAudioFiles():Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files/video-audio`);
+      }
       downloadFile(filename):Observable<any>{
         let options = new RequestOptions({responseType: ResponseContentType.Blob });
         return this.http.get(`${this.baseUrl}/cloud/file?filename=`+filename,{ responseType: 'blob' as 'json' },);

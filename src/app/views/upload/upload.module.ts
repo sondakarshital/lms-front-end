@@ -11,6 +11,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Progress Component
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
+// Pagination Component
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 // Buttons Routing
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -31,7 +34,8 @@ import { BasicAuthHttpInterceptorService } from '../../service/basic-auth-http-i
     ModalModule.forRoot(),
     FormsModule,
     UploadRoutingModule,
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   declarations: [
     UploadComponent

@@ -40,10 +40,6 @@ export class AuthenticationService {
   };
 
   userProfile(id):any{
-    // console.log("userDetail",id);
-    // return this.httpClient.get<any>("http://localhost:3000/users/"+id+"/avatar",{
-    //   responseType: 'blob'
-    // }).ma
     var url = "http://localhost:3000/users/"+id+"/avatar";
     return this.httpClient.get(url, {
       responseType: 'blob'

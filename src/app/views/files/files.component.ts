@@ -17,7 +17,7 @@ export class FilesComponent implements OnInit {
   currentItem: IMedia;
   playlist:FileDetails;
   constructor(public fileUploadService : FileUploadService) {
-    fileUploadService.getUploadedFiles().subscribe(files=>{
+    fileUploadService.getVideoAudioFiles().subscribe(files=>{
       this.playlist= files;
       console.log("files",this.playlist);
     },err=>{

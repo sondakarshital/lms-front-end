@@ -23,7 +23,10 @@ export class RegisterComponent implements OnInit {
       "password": new FormControl(null),
       "dob": new FormControl(null),
       "confirmPassword": new FormControl(null),
-      "age": new FormControl(null)
+      "mob": new FormControl(null),
+      "age": new FormControl(null),
+      "dept": new FormControl(null),
+      "address": new FormControl(null)
     });
   }
 
@@ -48,7 +51,7 @@ export class RegisterComponent implements OnInit {
     },err=>{
       console.log("err",err.error);
       this.invalidEmail = true;
+      this.registerForm.controls['email'].setErrors({'incorrect': true});
     })
   }
-
 }

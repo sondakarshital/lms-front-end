@@ -1,6 +1,8 @@
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
+//User created global variable
+import { AppGlobals} from '../../service/global'
 
 
 @Component({
@@ -12,7 +14,8 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(@Inject(DOCUMENT) _document?: any) {
+  profileUrl;
+  constructor(private appGlobals : AppGlobals,@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -22,9 +25,13 @@ export class DefaultLayoutComponent implements OnDestroy {
       attributes: true,
       attributeFilter: ['class']
     });
+    //profile pic
+    this.profileUrl = "assets/img/avatars/6.jpg";
+    console.log("appGlobals ",appGlobals.profile.avatar);
   }
 
   ngOnDestroy(): void {
     this.changes.disconnect();
+
   }
 }

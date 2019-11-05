@@ -3,6 +3,6 @@ export class UserDetail {
     public email: string;
     public password :string;
     public age : number;
-    public avatar : Blob;
+    public avatar : any;
     constructor() { }
 }

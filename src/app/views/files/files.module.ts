@@ -11,6 +11,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // Progress Component
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
+// Pagination Component
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 // Buttons Routing
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -26,6 +29,7 @@ import { VgCoreModule } from 'videogular2/compiled/core';
 import { VgControlsModule } from 'videogular2/compiled/controls';
 import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
 import { VgBufferingModule } from 'videogular2/compiled/buffering';
+import { DownloadComponent } from './download/download.component';
 
 
 // Angular
@@ -42,10 +46,12 @@ import { VgBufferingModule } from 'videogular2/compiled/buffering';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    PaginationModule.forRoot()
   ],
   declarations: [
-    FilesComponent
+    FilesComponent,
+    DownloadComponent
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true 

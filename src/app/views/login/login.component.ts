@@ -1,7 +1,7 @@
 import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
-import { AppGlobals} from '../../service/global'
+import { AppGlobals } from '../../service/global'
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
   error = ''
 
-  constructor(private router: Router,private loginservice: AuthenticationService,private appGlobals : AppGlobals) { }
+  constructor(private router: Router, private loginservice: AuthenticationService, private appGlobals: AppGlobals) { }
 
   ngOnInit() {
   }
@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
     this.loginservice.authenticate(this.email, this.password).subscribe(
       data => {
         this.appGlobals.profile = data;
-        
-        // this.loginservice.userProfile(data.user._id).subscribe(avatar=>{
-        //   console.log("profile image",data.user);
-        //   this.appGlobals.profile.avatar = avatar;
-        //   this.appGlobals.profile = data.user;
-        // })
+
+        this.loginservice.userProfile(data.user._id).subscribe(avatar => {
+          console.log("in login file", this.appGlobals.profile);
+          this.appGlobals.profile = data.user;
+          this.appGlobals.profile.avatar = avatar;
+        })
         this.router.navigate(['/dashboard'])
         this.invalidLogin = false
       },
