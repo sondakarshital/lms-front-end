@@ -23,6 +23,7 @@ import {FileDetails} from '../../domain/file-details'
                 const progress = Math.round(100 * event.loaded / event.total);
                 return { status: 'progress', message: progress };
               case HttpEventType.Response:
+              console.log("here");
                 return event.body;
               default:
                 return `Unhandled event: ${event.type}`;

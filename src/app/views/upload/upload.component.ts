@@ -11,10 +11,17 @@ import { map } from 'rxjs/operators';
 })
 export class UploadComponent implements OnInit {
   files: string[] = [];
+  imageurl;
   fileNames = [];
   fileDetails : FileDetails;
   uploadProgress =0;
   progress = false;
+  deleteDisabledButton = false;
+  deleteDisabledSpinner = true;
+
+  downloadDisabledButton = false;
+  downloadDisabledSpinner = true;
+  selectedRow;
   //pagination related variables
   totalItems: number = 64;
   bigTotalItems: number = 675;
@@ -22,6 +29,7 @@ export class UploadComponent implements OnInit {
   maxSize: number = 3;
   constructor(private uploadService: FileUploadService) {
     this.loadFiles(this.maxSize,1);
+    this.imageurl = "../../../assets/nodata.jpg"
   }
   ngOnInit() {
   }
@@ -34,12 +42,15 @@ export class UploadComponent implements OnInit {
   uploadFile() {
     this.progress = true;
     const formData = new FormData();
+    console.log("this.files ",this.files)
     this.files.forEach(file => {
       formData.append('upload', file);
     });
     this.uploadService.uploadFile(formData).subscribe((data) => {
       this.uploadProgress = data.message;
-      if(data.message==100) {
+      console.log("data ",data);
+      if(data.filePath) {
+        console.log("upload 100");
         this.progress = false;
         this.loadFiles(this.maxSize,1);
         this.fileNames = null;
@@ -50,23 +61,32 @@ export class UploadComponent implements OnInit {
   };
 
   loadFiles(size,page){
-    this.uploadService.getFiles(size,page).subscribe(files=>{
-      this.fileDetails = files;
+    this.uploadService.getFiles(size,page).subscribe(response=>{
+      console.log("files ",response);
+      this.fileDetails = response;
     },error=>{
       console.log("error occured while fetching files");
     })
   };
 
   download(filename){
+    this.downloadDisabledButton = true;
+    this.downloadDisabledSpinner = false;
     this.uploadService.downloadFile(filename).subscribe(file=>{
       importedSaveAs(file, filename);
+      this.downloadDisabledButton = false;
+      this.downloadDisabledSpinner = true;
     },error=>{
       console.log("error occured while fetching files",error);
     })
   };
   delete(filename){
+    this.deleteDisabledButton = true;
+    this.deleteDisabledSpinner = false;
     this.uploadService.deleteFile(filename).subscribe(file=>{
       console.log("file is deleted");
+      this.deleteDisabledButton = false;
+      this.deleteDisabledSpinner = true;
       this.loadFiles(this.maxSize,1);
     },err=>{
       console.log("error occured while deleting file");
@@ -77,4 +97,8 @@ export class UploadComponent implements OnInit {
     console.log('Page No ' + event.page);
     this.loadFiles(this.maxSize,event.page);
   }
+  //function to disable the download and the delete button
+  setClickedRow (index){
+    this.selectedRow = index;
+}
 }

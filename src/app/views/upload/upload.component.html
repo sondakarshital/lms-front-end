@@ -38,7 +38,7 @@
 </div>
 </div>
 
-<div class="animated fadeIn">
+<div class="animated fadeIn" >
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
@@ -46,7 +46,8 @@
             <i class="fa fa-align-justify"></i> Recently uploaded files
           </div>
           <div class="card-body">
-            <table class="table table-bordered table-striped table-sm">
+              <img [src]="imageurl" *ngIf = "fileDetails == 0">
+            <table class="table table-bordered table-striped table-sm" *ngIf = "fileDetails!=0">
               <thead>
                 <tr>
                   <th>File Name</th>
@@ -56,7 +57,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor = "let file of fileDetails">
+                <tr *ngFor = "let file of fileDetails;let i = index" (click)="setClickedRow(i)">
                   <td>{{file.name}}</td>
                   <td>{{file.uploadedBy}}</td>
                   <td>{{file.createdAt}}</td>
@@ -64,18 +65,18 @@
                       <!-- <button type="button" class="btn btn-primary px-4" (click)="download(file.name)">Download</button> -->
                       
                       <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
-                          <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)">Download</button>
-                          <button type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)">Delete</button>
-                          <button class="btn btn-primary" type="button" disabled>
-                              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                              Loading...
+                          <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)"  [disabled]="i == selectedRow ? downloadDisabledButton : ''">{{downloadDisabledButton ==true ?'Downloading' : 'Download' }}
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : downloadDisabledSpinner}"></span>
+                          </button>
+                          <button type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : deleteDisabledSpinner}"></span>
                           </button>
                       </div>
                   </td>
                 </tr>            
               </tbody>
             </table>
-            <div class="card">
+            <div class="card" *ngIf = "fileDetails!=0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-xs-12 col-12">
