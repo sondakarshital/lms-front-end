@@ -23,8 +23,8 @@ export class UploadComponent implements OnInit {
   downloadDisabledSpinner = true;
   selectedRow;
   //pagination related variables
-  totalItems: number = 64;
-  bigTotalItems: number = 675;
+  totalItems: number = 10;
+  bigTotalItems: number = 100;
   bigCurrentPage: number = 1;
   maxSize: number = 3;
   constructor(private uploadService: FileUploadService) {
@@ -34,15 +34,14 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
   }
 
-  fileName(file) {
-    this.files.push(file[0]);
-    this.fileNames.push(file[0].name);
+  fileName(file,event) {
+    this.files.push(event.target.files[0]);
+    this.fileNames.push(event.target.files[0].name);
   };
 
   uploadFile() {
     this.progress = true;
     const formData = new FormData();
-    console.log("this.files ",this.files)
     this.files.forEach(file => {
       formData.append('upload', file);
     });
@@ -50,10 +49,10 @@ export class UploadComponent implements OnInit {
       this.uploadProgress = data.message;
       console.log("data ",data);
       if(data.filePath) {
-        console.log("upload 100");
         this.progress = false;
         this.loadFiles(this.maxSize,1);
-        this.fileNames = null;
+        this.fileNames = [];
+        this.files = [];
       }
     }, (err) => {
       console.log("error occured");

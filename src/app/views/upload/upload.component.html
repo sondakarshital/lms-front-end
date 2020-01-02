@@ -11,8 +11,8 @@
             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
           </div>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01"
-              aria-describedby="inputGroupFileAddon01" (change)= "fileName($event.target.files)" multiple>
+            <input #myInput type="file" class="custom-file-input" id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01" (change)= "fileName(myInput.value,$event);myInput.value = ''" multiple>
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
           </div>
         </div>
@@ -62,14 +62,12 @@
                   <td>{{file.uploadedBy}}</td>
                   <td>{{file.createdAt}}</td>
                   <td>
-                      <!-- <button type="button" class="btn btn-primary px-4" (click)="download(file.name)">Download</button> -->
-                      
                       <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
                           <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)"  [disabled]="i == selectedRow ? downloadDisabledButton : ''">{{downloadDisabledButton ==true ?'Downloading' : 'Download' }}
-                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : downloadDisabledSpinner}"></span>
+                            <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
                           </button>
                           <button type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
-                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : deleteDisabledSpinner}"></span>
+                            <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
                           </button>
                       </div>
                   </td>
@@ -85,7 +83,6 @@
                                   [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
                     </div>
                   </div>
-                  <!-- <pre class="card card-body card-header">Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
                 </div>
               </div>
           </div>
