@@ -16,13 +16,12 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   user :UserDetail;
   constructor(private appGlobals: AppGlobals, private userProfileService: UserProfileService) { 
-   this.userProfileService.userProfile();
+   //this.userProfileService.userProfile();
     this.imageurl = "../../../assets/img/avatars/bodybuilder.jpg"
     var profile = this.appGlobals.profile;
-    var avatar = this.appGlobals.profile.avatar;
     this.profile(profile);
-    if (avatar) {
-      this.imageurl = avatar;
+    if (this.appGlobals.profile.avatar) {
+      this.imageurl = this.appGlobals.profile.avatar;
     }
   }
 
@@ -35,7 +34,6 @@ export class ProfileComponent implements OnInit {
     this.profileForm = new FormGroup({
       'username': new FormControl(user.name, Validators.required),
       'email': new FormControl(user.email),
-      'age': new FormControl(user.age),
       'dob': new FormControl(user.dob),
       'mob': new FormControl(user.mob),
       'dept': new FormControl(user.dept),

@@ -66,7 +66,7 @@
                           <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)"  [disabled]="i == selectedRow ? downloadDisabledButton : ''">{{downloadDisabledButton ==true ?'Downloading' : 'Download' }}
                             <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
                           </button>
-                          <button type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
+                          <button *ngIf = "isAdmin" type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
                             <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
                           </button>
                       </div>

@@ -22,11 +22,10 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.loginservice.authenticate(this.email, this.password).subscribe(
       data => {
-        this.appGlobals.profile = data;
-
+        this.appGlobals.profile = data.user;
+        console.log("data ",data);
         this.loginservice.userProfile(data.user._id).subscribe(avatar => {
           console.log("in login file", this.appGlobals.profile);
-          this.appGlobals.profile = data.user;
           this.appGlobals.profile.avatar = avatar;
         })
         //commented to route to upload page instead of dashboard

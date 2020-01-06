@@ -3,6 +3,7 @@ import { FileUploadService } from '../../service/fileupload-service/fileUpload.s
 import {FileDetails} from '../../domain/file-details'
 import {saveAs as importedSaveAs} from "file-saver";
 import { map } from 'rxjs/operators';
+import { AppGlobals} from '../../service/global'
 
 @Component({
   selector: 'app-upload',
@@ -12,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class UploadComponent implements OnInit {
   files: string[] = [];
   imageurl;
+  isAdmin = false;
   fileNames = [];
   fileDetails : FileDetails;
   uploadProgress =0;
@@ -27,7 +29,7 @@ export class UploadComponent implements OnInit {
   bigTotalItems: number = 100;
   bigCurrentPage: number = 1;
   maxSize: number = 3;
-  constructor(private uploadService: FileUploadService) {
+  constructor(private uploadService: FileUploadService,private appGlobals : AppGlobals) {
     this.loadFiles(this.maxSize,1);
     this.imageurl = "../../../assets/nodata.jpg"
   }
@@ -60,6 +62,7 @@ export class UploadComponent implements OnInit {
   };
 
   loadFiles(size,page){
+    if(this.appGlobals.profile.role =="admin") this.isAdmin = true;
     this.uploadService.getFiles(size,page).subscribe(response=>{
       console.log("files ",response);
       this.fileDetails = response;

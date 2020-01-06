@@ -26,8 +26,13 @@ export class DefaultLayoutComponent implements OnDestroy {
       attributeFilter: ['class']
     });
     //profile pic
-    this.profileUrl = "assets/img/avatars/6.jpg";
+    this.profileUrl = "assets/img/avatars/bodybuilder.jpg";
     //console.log("appGlobals ",appGlobals.profile.avatar);
+    console.log("layout :::::::::::::",appGlobals.profile);
+    if(appGlobals.profile.avatar){
+      this.profileUrl = appGlobals.profile.avatar;
+    }
+    
   }
 
   ngOnDestroy(): void {

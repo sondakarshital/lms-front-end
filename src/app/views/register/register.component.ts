@@ -3,6 +3,7 @@ import { UserDetail } from '../../domain/user-detail';
 import { UserService } from '../../service/user-service/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationService } from './register.validationService';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,23 +11,31 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
   styles: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  togglePassword: boolean;
+  toggleConfirmPassword: boolean;
   registerForm: FormGroup;
   user: UserDetail = new UserDetail();
   invalidEmail = false;
   // registerForm: FormGroup;
   constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
 
+  togglePasswordField(){
+    this.togglePassword = !this.togglePassword;
+  }
+  toggleConfirmPasswordField(){
+    this.toggleConfirmPassword = !this.toggleConfirmPassword;
+  }
+
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      "name": new FormControl(null, Validators.required),
-      "email": new FormControl(null, [Validators.required, Validators.email]),
-      "password": new FormControl(null),
-      "dob": new FormControl(null),
-      "confirmPassword": new FormControl(null),
-      "mob": new FormControl(null),
-      "age": new FormControl(null),
-      "dept": new FormControl(null),
-      "address": new FormControl(null)
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, ValidationService.emailValidator]],
+      password: ['',[Validators.required,ValidationService.passwordValidator]],
+      dob: ['',[Validators.required,ValidationService.dobFormatValidator,ValidationService.dobValidator]],
+      confirmPassword: ['',[Validators.required,ValidationService.confirmPasswordValidator]],
+      mob: ['',[Validators.required,ValidationService.mobValidator]],
+      dept: ['',[Validators.required,ValidationService.deptValidator]],
+      address: ['',[Validators.required]]
     });
   }
 

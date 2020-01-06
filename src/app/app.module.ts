@@ -52,6 +52,7 @@ import { AppGlobals } from './service/global';
 import { LogoutComponent } from './views/logout/logout.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { ControlMessagesComponent } from './views/register/register.controlMessages';
 
 
 
@@ -84,7 +85,8 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     RegisterComponent,
     LogoutComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ControlMessagesComponent
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true, 
