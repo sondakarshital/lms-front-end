@@ -37,4 +37,8 @@ export class UserProfileService {
     console.log("url ",this.url+"me/avatar");
     return this.httpClient.post<any>(this.url+"me/avatar",data);
   }
+  updateUser(data){
+    console.log("qqqqq")
+    return this.httpClient.patch(`${this.url}me`, data);
+  }
 }

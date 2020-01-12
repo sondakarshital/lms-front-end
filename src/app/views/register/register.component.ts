@@ -4,6 +4,7 @@ import { UserService } from '../../service/user-service/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from './register.validationService';
+import { ControlMessagesComponent} from './register.controlMessages'
 
 @Component({
   selector: 'app-dashboard',

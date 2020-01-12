@@ -2,7 +2,8 @@ export class UserDetail {
     public name: string;
     public email: string;
     public password :string;
-    public age : number;
+    public mob : string;
+    public address : string;
     public role :string;
     public avatar : any;
     constructor() { }
