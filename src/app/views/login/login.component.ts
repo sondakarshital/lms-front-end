@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
           this.appGlobals.profile.avatar = avatar;
         })
         //commented to route to upload page instead of dashboard
-        //this.router.navigate(['/dashboard'])
-        this.router.navigate(['/upload'])
+        this.router.navigate(['/dashboard'])
+        //this.router.navigate(['/upload'])
         this.invalidLogin = false
       },
       error => {
