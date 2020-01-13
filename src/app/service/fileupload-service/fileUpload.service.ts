@@ -44,6 +44,10 @@ import {FileDetails} from '../../domain/file-details'
         return this.http.get<FileDetails>(`${this.baseUrl}/files/images?limit=${limit}&pageNo=${pageNo}`);
       }
       //with pagination
+      getOtherFiles(limit,pageNo):Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files/other-files?limit=${limit}&pageNo=${pageNo}`);
+      }
+      //with pagination
       getFiles(limit,pageNo):Observable<FileDetails>{
         return this.http.get<FileDetails>(`${this.baseUrl}/files?limit=${limit}&pageNo=${pageNo}`);
       }

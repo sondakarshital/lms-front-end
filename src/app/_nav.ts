@@ -47,34 +47,34 @@ export const navItems: NavData[] = [
   {
     name: 'Upload',
     url: '/upload',
-    icon: 'icon-puzzle',
+    icon: 'icon-cloud-upload',
     children: [
       {
         name: 'Upload',
         url: '/upload',
-        icon: 'icon-puzzle'
+        icon: 'icon-cloud-upload'
       }
     ]
   },
   {
     name: 'Files',
     url: '/files',
-    icon: 'icon-puzzle',
+    icon: 'icon-docs',
     children: [
       {
         name: 'Videos/Audios',
         url: '/files',
-        icon: 'icon-puzzle'
+        icon: 'icon-music-tone-alt'
       },
       {
         name: 'Pdf',
         url: '/files/pdf',
-        icon: 'icon-puzzle'
+        icon: 'icon-docs'
       },
       {
         name: 'Pictures',
         url: '/files/pictures',
-        icon: 'icon-puzzle'
+        icon: 'icon-picture'
       },
       {
         name: 'Others',
@@ -84,7 +84,7 @@ export const navItems: NavData[] = [
       {
         name: 'Download',
         url: '/files/download',
-        icon: 'icon-puzzle'
+        icon: 'icon-cloud-download'
       }
     ]
   }
