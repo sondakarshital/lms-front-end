@@ -1,0 +1,36 @@
+<div class="row">
+  <div>
+      <img [src]="imageurl" class="myclass" *ngIf = "fileDetails == 0">
+  </div>
+    <div class="col-sm-6 col-md-4" >
+      <div class="card border-primary" *ngFor = "let file of fileDetails;let i = index" (click)="setClickedRow(i)">
+        <div class="card-header">
+          {{file.name}}
+        </div>
+        <div class="card-body" >
+          <img class= "myclass" [src]="file.fileUrl">
+        </div>
+        <div class="card-footer">
+            <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)"  [disabled]="i == selectedRow ? downloadDisabledButton : ''">{{downloadDisabledButton ==true ?'Downloading' : 'Download' }}
+                  <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
+                </button>
+                <button *ngIf = "isAdmin" type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
+                  <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
+                </button>
+            </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+  <div class="card" *ngIf = "fileDetails!=0">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-12 col-12">
+          <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                      previousText="Previous" nextText="Next" firstText="First" lastText="Last"
+                      [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -2,9 +2,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-
-
-
 // Dropdowns Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
@@ -30,6 +27,9 @@ import { VgControlsModule } from 'videogular2/compiled/controls';
 import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
 import { VgBufferingModule } from 'videogular2/compiled/buffering';
 import { DownloadComponent } from './download/download.component';
+import { PdfComponent } from './pdf/pdf.component';
+import { PicturesComponent } from './pictures/pictures.component';
+import { OthersComponent } from './others/others.component';
 
 
 // Angular
@@ -51,7 +51,10 @@ import { DownloadComponent } from './download/download.component';
   ],
   declarations: [
     FilesComponent,
-    DownloadComponent
+    DownloadComponent,
+    PdfComponent,
+    PicturesComponent,
+    OthersComponent
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true 

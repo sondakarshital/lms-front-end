@@ -36,6 +36,14 @@ import {FileDetails} from '../../domain/file-details'
         return this.http.get<FileDetails>(`${this.baseUrl}/files`);
       }
       //with pagination
+      getPdf(limit,pageNo):Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files/pdf?limit=${limit}&pageNo=${pageNo}`);
+      }
+      //with pagination
+      getImages(limit,pageNo):Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files/images?limit=${limit}&pageNo=${pageNo}`);
+      }
+      //with pagination
       getFiles(limit,pageNo):Observable<FileDetails>{
         return this.http.get<FileDetails>(`${this.baseUrl}/files?limit=${limit}&pageNo=${pageNo}`);
       }

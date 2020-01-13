@@ -1,0 +1,54 @@
+    <div class="animated fadeIn" >
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa fa-align-justify"></i> Recently uploaded files
+              </div>
+              <div class="card-body">
+                  <img [src]="imageurl" *ngIf = "fileDetails == 0">
+                <table class="table table-bordered table-striped table-sm" *ngIf = "fileDetails!=0">
+                  <thead>
+                    <tr>
+                      <th>File Name</th>
+                      <th>Uploaded By</th>
+                      <th>Uploaded Time</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor = "let file of fileDetails;let i = index" (click)="setClickedRow(i)">
+                      <td>{{file.name}}</td>
+                      <td>{{file.uploadedBy}}</td>
+                      <td>{{file.createdAt}}</td>
+                      <td>
+                          <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                              <button type="button" class="btn btn-sm btn-primary" (click)="download(file.name)"  [disabled]="i == selectedRow ? downloadDisabledButton : ''">{{downloadDisabledButton ==true ?'Downloading' : 'Download' }}
+                                <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
+                              </button>
+                              <button *ngIf = "isAdmin" type="button" class="btn btn-sm btn-primary" (click)="delete(file.name)" [disabled]="i == selectedRow ? deleteDisabledButton : ''">{{deleteDisabledButton ==true ?'Deleting' : 'Delete' }}
+                                <!-- <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [ngClass]="{'display-span' : i == selectedRow}"></span> -->
+                              </button>
+                              <a href="https://storage.cloud.google.com/lms-upload-files/Unit-1.pdf" target="_blank" class="btn btn-sm btn-primary">Preview</a>
+                          </div>
+                      </td>
+                    </tr>            
+                  </tbody>
+                </table>
+                <div class="card" *ngIf = "fileDetails!=0">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-xs-12 col-12">
+                          <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                                      previousText="Previous" nextText="Next" firstText="First" lastText="Last"
+                                      [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
