@@ -32,6 +32,7 @@ export class UploadComponent implements OnInit {
   searchValue;
   constructor(private uploadService: FileUploadService,private appGlobals : AppGlobals) {
     this.loadFiles(this.maxSize,1,this.searchValue);
+    console.log("appGlobals ",appGlobals);
     this.imageurl = "../../../assets/nodata.jpg"
   }
   ngOnInit() {
