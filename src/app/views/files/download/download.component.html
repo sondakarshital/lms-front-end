@@ -20,6 +20,7 @@
           <table class="table table-bordered table-striped table-sm" *ngIf="fileDetails!=0">
             <thead>
               <tr>
+                <th>SI No.</th>
                 <th>File Name</th>
                 <th>Uploaded By</th>
                 <th>Uploaded Time</th>
@@ -28,6 +29,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let file of fileDetails;let i = index" (click)="setClickedRow(i)">
+                <td>{{i+1}}</td>
                 <td>{{file.name}}</td>
                 <td>{{file.uploadedBy}}</td>
                 <td>{{file.createdAt}}</td>
