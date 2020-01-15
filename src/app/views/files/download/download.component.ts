@@ -27,7 +27,7 @@ export class DownloadComponent implements OnInit {
   totalItems: number = 10;
   bigTotalItems: number = 100;
   bigCurrentPage: number = 1;
-  maxSize: number = 3;
+  maxSize: number = 7;
   searchValue;
   constructor(private uploadService: FileUploadService, private appGlobals: AppGlobals) {
     this.loadFiles(this.maxSize, 1,this.searchValue);

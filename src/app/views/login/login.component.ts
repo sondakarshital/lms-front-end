@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.error = "Seems like you have provided wrong credentials";
+        this.error = "Provided credentials are wrong";
         this.invalidLogin = true;
       }
     );

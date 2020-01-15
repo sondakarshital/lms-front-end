@@ -45,7 +45,7 @@ export const navItems: NavData[] = [
   },
 
   {
-    name: 'Upload',
+    name: 'Upload Files',
     url: '/upload',
     icon: 'icon-cloud-upload',
     children: [
