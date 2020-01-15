@@ -19,4 +19,7 @@ export class UserService {
   public verifyEmail(email){
     return this.http.post(`${this.baseUrl}/user/verify-email`, email);
   }
+  public users(): Observable<any> {
+   return this.http.get(`${this.baseUrl}/users/all`);
+ }
 }

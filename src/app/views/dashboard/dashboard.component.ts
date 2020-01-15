@@ -1,13 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { FileUploadService } from '../../service/fileupload-service/fileUpload.service'
+import { UserService } from '../../service/user-service/user.service'
+
 
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
+  
 
   radioModel: string = 'Month';
+  users = [];
+  file ;
+
+  constructor(private fileUploadService : FileUploadService,private userService : UserService ){
+    this.loadDetails();
+  }
+  loadDetails() {
+    this.fileUploadService.fileCount().subscribe((data)=>{
+      console.log("files count:::::::::",data)
+      this.file = data;
+    },err=>{
+
+    });
+    this.userService.users().subscribe((users)=>{
+      console.log("total users:::",users);
+      this.users = users;
+    },err=>{
+
+    })
+  }
 
   // lineChart1
   public lineChart1Data: Array<any> = [

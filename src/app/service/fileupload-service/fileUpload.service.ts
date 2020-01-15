@@ -62,5 +62,8 @@ import {FileDetails} from '../../domain/file-details'
       deleteFile(filename){
         return this.http.delete(`${this.baseUrl}/cloud/file?filename=`+filename,);
       }
+      fileCount():Observable<Object>{
+        return this.http.get(`${this.baseUrl}/files/count`);
+      }
 
 }
