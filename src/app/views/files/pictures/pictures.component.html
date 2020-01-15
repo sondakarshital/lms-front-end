@@ -2,8 +2,8 @@
   <div>
       <img [src]="imageurl" class="myclass" *ngIf = "fileDetails == 0">
   </div>
-    <div class="col-sm-6 col-md-4" >
-      <div class="card border-primary" *ngFor = "let file of fileDetails;let i = index" (click)="setClickedRow(i)">
+    <div class="col-sm-6 col-md-4" *ngFor = "let file of fileDetails;let i = index" (click)="setClickedRow(i)">
+      <div class="card border-primary" >
         <div class="card-header">
           {{file.name}}
         </div>

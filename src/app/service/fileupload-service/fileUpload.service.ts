@@ -48,8 +48,8 @@ import {FileDetails} from '../../domain/file-details'
         return this.http.get<FileDetails>(`${this.baseUrl}/files/other-files?limit=${limit}&pageNo=${pageNo}`);
       }
       //with pagination
-      getFiles(limit,pageNo):Observable<FileDetails>{
-        return this.http.get<FileDetails>(`${this.baseUrl}/files?limit=${limit}&pageNo=${pageNo}`);
+      getFiles(limit,pageNo,value):Observable<FileDetails>{
+        return this.http.get<FileDetails>(`${this.baseUrl}/files?limit=${limit}&pageNo=${pageNo}&term=${value}`);
       }
       //getting video audio files
       getVideoAudioFiles():Observable<FileDetails>{

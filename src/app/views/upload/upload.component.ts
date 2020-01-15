@@ -29,8 +29,9 @@ export class UploadComponent implements OnInit {
   bigTotalItems: number = 100;
   bigCurrentPage: number = 1;
   maxSize: number = 3;
+  searchValue;
   constructor(private uploadService: FileUploadService,private appGlobals : AppGlobals) {
-    this.loadFiles(this.maxSize,1);
+    this.loadFiles(this.maxSize,1,this.searchValue);
     this.imageurl = "../../../assets/nodata.jpg"
   }
   ngOnInit() {
@@ -52,7 +53,7 @@ export class UploadComponent implements OnInit {
       console.log("data ",data);
       if(data.filePath) {
         this.progress = false;
-        this.loadFiles(this.maxSize,1);
+        this.loadFiles(this.maxSize,1,this.searchValue);
         this.fileNames = [];
         this.files = [];
       }
@@ -61,9 +62,9 @@ export class UploadComponent implements OnInit {
     })
   };
 
-  loadFiles(size,page){
+  loadFiles(size,page,searchValue){
     if(this.appGlobals.profile.role =="admin") this.isAdmin = true;
-    this.uploadService.getFiles(size,page).subscribe(response=>{
+    this.uploadService.getFiles(size,page,searchValue).subscribe(response=>{
       console.log("files ",response);
       this.fileDetails = response;
     },error=>{
@@ -89,7 +90,7 @@ export class UploadComponent implements OnInit {
       console.log("file is deleted");
       this.deleteDisabledButton = false;
       this.deleteDisabledSpinner = true;
-      this.loadFiles(this.maxSize,1);
+      this.loadFiles(this.maxSize,1,this.searchValue);
     },err=>{
       console.log("error occured while deleting file");
     })
@@ -97,7 +98,7 @@ export class UploadComponent implements OnInit {
   //pagination
   pageChanged(event: any): void {
     console.log('Page No ' + event.page);
-    this.loadFiles(this.maxSize,event.page);
+    this.loadFiles(this.maxSize,event.page,this.searchValue);
   }
   //function to disable the download and the delete button
   setClickedRow (index){
