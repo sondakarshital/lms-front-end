@@ -1,5 +1,8 @@
 <div class="animated fadeIn">
     <div class="row">
+        <div>
+            <img [src]="imageurl" class="myclass" *ngIf = "playlist == 0">
+        </div>
         <div class="col-sm-6 col-md-6" *ngFor="let item of playlist; let $index = index" [class.selected]="item === currentItem">
             <div class="card">
                 <div class="card-header">

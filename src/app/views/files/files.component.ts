@@ -16,6 +16,7 @@ export class FilesComponent implements OnInit {
   selectedFiles: File = null;
   currentItem: IMedia;
   playlist:FileDetails;
+  imageurl;
   constructor(public fileUploadService : FileUploadService) {
     fileUploadService.getVideoAudioFiles().subscribe(files=>{
       this.playlist= files;
@@ -23,6 +24,7 @@ export class FilesComponent implements OnInit {
     },err=>{
       console.log("error occured")
     })
+    this.imageurl = "../../../../assets/nodata.jpg"
   }
   ngOnInit() {
 
